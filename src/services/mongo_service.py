@@ -22,6 +22,12 @@ class MongoService:
         db_connection = client[self.database]
         return db_connection[collection_name]
 
+    def force_save_many_data(self, many_data, collection_name, client):
+        return self.__force_save(many_data, collection_name, self.save_many_data, client)
+
+    def force_save_data(self, data, collection_name, client):
+        return self.__force_save(data, collection_name, self.save_data, client)
+
     def save_data(self, data, collection_name, client):
         try:
             collection = self.get_collection(collection_name, client)
@@ -31,20 +37,22 @@ class MongoService:
             print(ex)
             return False
 
-    def get_data(self, collection_name, client):
+    def save_many_data(self, many_data, collection_name, client):
         try:
             collection = self.get_collection(collection_name, client)
-            return list(collection.find())
-        except:
-            return list()
+            collection.insert_many(many_data)
+            return True
+        except Exception as ex:
+            print(ex)
+            return False
 
-    def force_save_data(self, data, collection_name, client):
+    def __force_save(self, data, collection_name, save_method, client):
         max_attempts = 10
         attempt = 0
-        success = self.save_data(data, collection_name, client)
+        success = save_method(data, collection_name, client)
 
         while success is False and attempt < max_attempts:
-            success = self.save_data(
+            success = save_method(
                 data,
                 collection_name,
                 client
@@ -55,6 +63,13 @@ class MongoService:
             print(f'Failed to save {data}')
 
         return success
+
+    def get_data(self, collection_name, client):
+        try:
+            collection = self.get_collection(collection_name, client)
+            return list(collection.find())
+        except:
+            return list()
 
     def force_get_data(self, collection_name, client):
         max_attempts = 10

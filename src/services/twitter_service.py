@@ -22,6 +22,17 @@ class TwitterService:
         creds = self.client.VerifyCredentials()
         return creds.id
 
+    def get_user_timeline(
+            self, user_id=None, screen_name=None,
+            since_id=None, max_id=None, count=None,
+            include_rts=True, trim_user=False, exclude_replies=False
+    ):
+        return self.client.GetUserTimeline(
+            user_id, screen_name, since_id,
+            max_id, count, include_rts,
+            trim_user, exclude_replies
+        )
+
     def list_my_tweets(self):
         tweets = self.client.GetUserTimeline(
             user_id=self.get_my_id(),
