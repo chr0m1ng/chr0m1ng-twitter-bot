@@ -167,9 +167,9 @@ to do so I will follow some steps:
 
 ---
 
-## First run
+## Harvest
 
-First I need to fill the `MongoDB` `tweets` collection at with some tweets.
+For the first run I need to fill the `MongoDB` `tweets` collection at with some tweets.
 
 To do so, I'm going to use the `get user timeline` via Twitter API
 to get all my old tweets.
