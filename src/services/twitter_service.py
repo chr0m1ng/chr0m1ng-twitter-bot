@@ -36,7 +36,6 @@ class TwitterService:
             tweets = self.client.GetUserTimeline(
                 user_id=self.get_my_id(),
                 count=200,
-                exclude_replies=True,
                 include_rts=False,
                 max_id=tweets[-1].id
             )
