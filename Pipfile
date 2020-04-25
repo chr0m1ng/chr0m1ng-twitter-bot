@@ -12,9 +12,11 @@ python-twitter = "*"
 pymongo = "*"
 dnspython = "*"
 numpy = "*"
+progress = "*"
 
 [requires]
 python_version = "3.8"
 
 [scripts]
+harvest = "python src/harvest.py"
 start = "python src/main.py"
