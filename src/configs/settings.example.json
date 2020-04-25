@@ -1,0 +1,12 @@
+{
+  "twitter": {
+    "access_token": "<YOUR_TWITTER_ACCESS_TOKEN>",
+    "access_token_secret": "<YOUR_TWITTER_ACCESS_TOKEN_SECRET>",
+    "api_key": "<YOUR_TWITTER_API_KEY>",
+    "api_secret_key": "<YOUR_TWITTER_API_KEY_SECRET>"
+  },
+  "mongo": {
+    "connection_string": "mongodb+srv://<YOUR_USER>:<YOUR_PASSWORD>@<YOUR_CLUSTER>",
+    "database": "<YOUR_DATABASE_NAME>"
+  }
+}
