@@ -15,7 +15,8 @@ class TwitterService:
             consumer_key=api_key,
             consumer_secret=api_secret_key,
             access_token_key=access_token,
-            access_token_secret=access_token_secret
+            access_token_secret=access_token_secret,
+            sleep_on_rate_limit=True
         )
 
     def get_my_id(self):
