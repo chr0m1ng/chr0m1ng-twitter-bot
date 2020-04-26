@@ -8,11 +8,11 @@ autopep8 = "*"
 pylint = "*"
 
 [packages]
-python-twitter = "*"
 pymongo = "*"
 dnspython = "*"
 numpy = "*"
 progress = "*"
+tweepy = "*"
 
 [requires]
 python_version = "3.8"

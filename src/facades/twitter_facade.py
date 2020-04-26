@@ -1,6 +1,6 @@
 from services import MongoService, TwitterService
 from constants.mongo.collections import BOT_TWEETS_COLLECTION, TWEETS_COLLECTION
-from progress.spinner import PieSpinner
+from progress.bar import ShadyBar
 
 
 class TwitterFacade:
@@ -43,22 +43,19 @@ class TwitterFacade:
         return tweets
 
     def harvest_my_tweets_json(self):
-        for tweet in PieSpinner('Harvesting tweets and saving...').iter(self.harvest_my_tweets()):
+        for tweet in ShadyBar('Harvesting tweets').iter(self.harvest_my_tweets()):
             yield tweet._json
 
     def harvest_my_tweets(self):
-        max_id = None
+        last_id = None
         tweets = []
-        while len(tweets) > 0 or max_id is None:
-            tweets = self.twitter_service.get_user_timeline(
-                user_id=self.twitter_service.get_my_id(),
+        while len(tweets) > 0 or last_id is None:
+            tweets = self.twitter_service.get_my_timeline(
                 count=200,
-                include_rts=False,
-                max_id=max_id
+                max_id=last_id
             )
+
             for tweet in tweets:
                 yield tweet
-            if len(tweets) > 0:
-                max_id = tweets[-1].id
-            else:
-                max_id = -1
+
+            last_id = tweets[-1].id - 1 if len(tweets) > 0 else -1
