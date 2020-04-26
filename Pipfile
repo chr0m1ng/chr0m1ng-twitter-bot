@@ -20,4 +20,4 @@ python_version = "3.8"
 [scripts]
 harvest = "python src/harvest.py"
 stream = "python src/stream.py"
-start = "python src/main.py"
+chain-creation = "python src/chain_creation.py"
