@@ -183,8 +183,7 @@ Now that I have my old tweets I just need to save them to `MongoDB` `tweets` col
 The app will fetch tweets via Twitter API streaming option and
 for every new tweet will do the following steps:
 
-- Check if this tweet is a bot tweet using the `tweet.id` and
-the stored `bot_tweets` collection from `MongoDB`;
+- Check if this tweet is a bot tweet based on `WOEID` geo location;
 - If it **isn't** a bot tweet:
     - save the tweet to `MongoDB` `tweets` collection.
 
@@ -197,7 +196,7 @@ the stored `bot_tweets` collection from `MongoDB`;
 - Create a new `Markvo Chain`;
 - Save the `Chain` to `MongoDB` `chains` collection;
 - Generate a tweet with that `Chain`;
-- Post the tweet;
+- Post the tweet using location with `WOEID` of Scranton, PA - US;
 - Create a `dict` where:
     - `tweet` => the generated tweet text;
     - `id` => `tweet.id`.
