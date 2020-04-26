@@ -1,1 +1,1 @@
-from .collections import BOT_TWEETS_COLLECTION, CHAINS_COLLECTION, TWEETS_COLLECTION
+from .collections import *
