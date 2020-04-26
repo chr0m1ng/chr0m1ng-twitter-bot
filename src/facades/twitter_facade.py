@@ -59,3 +59,6 @@ class TwitterFacade:
                 yield tweet
 
             last_id = tweets[-1].id - 1 if len(tweets) > 0 else -1
+
+    def setup_tweet_stream(self, stream_listener):
+        return self.twitter_service.get_my_stream(stream_listener)
