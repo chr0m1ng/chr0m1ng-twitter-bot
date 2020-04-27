@@ -10,9 +10,9 @@ pylint = "*"
 [packages]
 pymongo = "*"
 dnspython = "*"
-numpy = "*"
 progress = "*"
 tweepy = "*"
+unidecode = "*"
 
 [requires]
 python_version = "3.8"
@@ -21,3 +21,4 @@ python_version = "3.8"
 harvest = "python src/harvest.py"
 stream = "python src/stream.py"
 chain-creation = "python src/chain_creation.py"
+chain-generation = "python src/chain_generation.py"
