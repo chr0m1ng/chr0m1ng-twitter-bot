@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Chr0m1ng Twitter Bot CI/CD
+name: Chr0m1ng Twitter Bot CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -23,7 +23,7 @@ jobs:
       uses: microsoft/variable-substitution@v1
       with:
         # comma separated list of XML/JSON/YAML files in which tokens are to be substituted. Files names must be specified relative to the folder-path.
-        files: ./src/configs/settings.example.json
+        files: "**/settings.example.json"
         twitter.access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
         twitter.access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         twitter.api_key: ${{ secrets.TWITTER_API_KEY }}
