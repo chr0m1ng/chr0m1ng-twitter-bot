@@ -2,7 +2,10 @@ from facades import TwitterFacade
 from listeners import TweetListener
 from services import TwitterService
 
-tf = TwitterFacade()
-tl = TweetListener()
+while True:
+    try:
+        tf = TwitterFacade()
+        tl = TweetListener()
 
-tf.setup_tweet_stream(tl)
+        tf.setup_my_stream(tl)
+        input('Running stream...')

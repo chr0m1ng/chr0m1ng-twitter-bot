@@ -33,6 +33,12 @@ class TwitterService:
         )
 
     def get_my_stream(self, stream_listener):
+        return self.get_stream(stream_listener, [self.get_my_id_str()])
+
+    def get_stream(self, stream_listener, twitters):
         tweet_stream = tweepy.Stream(self.client.auth, stream_listener)
-        tweet_stream.filter(follow=[self.get_my_id_str()], is_async=True)
+        tweet_stream.filter(follow=twitters, is_async=True)
         return tweet_stream
+
+    def post_tweet(self, tweet, place_id=None):
+        return self.client.update_status(status=tweet, place_id=place_id)

@@ -1,5 +1,6 @@
 from services import MongoService, TwitterService
 from constants.mongo.collections import BOT_TWEETS_COLLECTION, TWEETS_COLLECTION
+from constants.twitter.tweet import BOT_WOEID
 from progress.bar import ShadyBar
 
 
@@ -60,5 +61,11 @@ class TwitterFacade:
 
             last_id = tweets[-1].id - 1 if len(tweets) > 0 else -1
 
-    def setup_tweet_stream(self, stream_listener):
+    def setup_my_stream(self, stream_listener):
         return self.twitter_service.get_my_stream(stream_listener)
+
+    def setup_tweet_stream(self, stream_listener, follow_ids):
+        return self.twitter_service.get_stream(stream_listener, follow_ids)
+
+    def post_bot_tweet(self, tweet):
+        return self.twitter_service.post_tweet(tweet, BOT_WOEID)
