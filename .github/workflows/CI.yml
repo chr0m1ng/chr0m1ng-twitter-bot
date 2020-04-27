@@ -18,6 +18,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: ls
+      run: ls
+    
+    - name: pwd
+      run: pwd
+   
+    - name: ls 2
+      run: ls ./
    
     - name: Variable Substitution
       uses: microsoft/variable-substitution@v1
