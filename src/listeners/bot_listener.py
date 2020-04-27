@@ -21,9 +21,9 @@ class BotListener(StreamListener):
             chains = mcf.create_chain()
             bot_tweet = mcf.generate_phrase(chains, MAX_LENGTH)
             print(bot_tweet)
-            # post = tf.post_bot_tweet(bot_tweet)
-            # mcf.save_chain(chains)
-            # tf.save_tweet(post._json, True)
+            post = tf.post_bot_tweet(bot_tweet)
+            mcf.save_chain(chains)
+            tf.save_tweet(post._json, True)
         except Exception as ex:
             print(ex)
 
