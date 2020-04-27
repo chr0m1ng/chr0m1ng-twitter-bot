@@ -19,13 +19,7 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: ls
-      run: ls
-    
-    - name: pwd
-      run: pwd
-   
-    - name: ls 2
-      run: ls ./
+      run: ls $GITHUB_WORKSPACE
    
     - name: Variable Substitution
       uses: microsoft/variable-substitution@v1
