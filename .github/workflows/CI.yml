@@ -23,7 +23,7 @@ jobs:
       uses: microsoft/variable-substitution@v1
       with:
         # comma separated list of XML/JSON/YAML files in which tokens are to be substituted. Files names must be specified relative to the folder-path.
-        files: "**/configs/settings.example.json"
+        files: 'src/configs/*.json'
         twitter.access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
         twitter.access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         twitter.api_key: ${{ secrets.TWITTER_API_KEY }}
