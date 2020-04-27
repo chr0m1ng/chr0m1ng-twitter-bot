@@ -1,16 +1,21 @@
+from constants.markov_chains.word_types import *
 from constants.markov_chains.keys import *
 from processors import TweetProcessor
 from facades import TwitterFacade
+from services import MongoService
 from progress.bar import ShadyBar
 from functools import reduce
+from random import choice, choices
 
 N_DIGITS_ROUND = 2
+CHAINS_COLLECTION = 'chains'
 
 
 class MarkovChainFacade:
 
     def __init__(self):
         self.twitter_facade = TwitterFacade()
+        self.mongo_service = MongoService()
 
     def get_clean_tweets(self):
         tweets = self.twitter_facade.get_saved_tweets()
@@ -93,3 +98,46 @@ class MarkovChainFacade:
                 bar.next()
         bar.finish()
         return self.calculate_rates(markov_chain)
+
+    def save_chain(self, markov_chain):
+        client = self.mongo_service.connect()
+        self.mongo_service.force_save_data(
+            markov_chain, CHAINS_COLLECTION, client
+        )
+        client.close()
+
+    def choose_next_word(self, nodes):
+        words = []
+        rates = []
+        for w, v in nodes.items():
+            words.append(w)
+            rates.append(v[R_OCCURR_KEY])
+        if len(words) == 0:
+            print('eitaaa')
+        [next_word] = choices(words, rates)
+        return next_word
+
+    def decide_word_type(self, w_type_node):
+        [word_type] = choices(
+            [MID_WORD, END_WORD],
+            [w_type_node[R_MID_KEY], w_type_node[R_END_KEY]]
+        )
+        return word_type
+
+    def generate_phrase(self, markov_chain, max_len):
+        initial_word = choice(
+            [w for w, v in markov_chain.items() if v[IS_INIT_KEY]]
+        )
+        phrase = initial_word
+        current_nodes = markov_chain[initial_word][NODES_KEY]
+        next_word_type = MID_WORD
+        while next_word_type != END_WORD and len(phrase) <= max_len and len(current_nodes) > 0:
+            next_word = self.choose_next_word(current_nodes)
+            phrase += f' {next_word}'
+            next_word_type = self.decide_word_type(
+                current_nodes[next_word][W_TYPE_KEY]
+            )
+            current_nodes = markov_chain[next_word][NODES_KEY]
+        if len(phrase) > max_len:
+            phrase = phrase[:max_len - 1]
+        return TweetProcessor.decode_tweet(phrase)
