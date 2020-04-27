@@ -21,11 +21,9 @@ jobs:
    
     - name: Variable Substitution
       uses: microsoft/variable-substitution@v1
-      env: 
-        SETTINGS_FILE: settings.example.json
       with:
         # comma separated list of XML/JSON/YAML files in which tokens are to be substituted. Files names must be specified relative to the folder-path.
-        files: ./src/configs/${SETTINGS_FILE}
+        files: ./src/configs/settings.example.json
         twitter.access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
         twitter.access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         twitter.api_key: ${{ secrets.TWITTER_API_KEY }}
