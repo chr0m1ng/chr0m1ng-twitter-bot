@@ -32,11 +32,14 @@ jobs:
         mongo.connection_string: ${{ secrets.MONGO_CONNECTION_STRING }}
         mongo.database: ${{ secrets.MONGO_DATABASE }}
         bot.follow_triggers: ${{ secrets.BOT_FOLLOW_TRIGGERS }}
-        
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2
+    
+    - name: Deploy to Heroku
+      uses: AkhileshNS/heroku-deploy@v3.0.4
       with:
-        # Artifact name
-        name: settings
-        # A file, directory or wildcard pattern that describes what to upload
-        path: 'src/configs/settings.example.json'
+        # This will be used for authentication. You can find it in your heroku homepage account settings
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        # Email that you use with heroku
+        heroku_email: gabrielrsantoss@icloud.com
+        # The appname to use for deploying/updating
+        heroku_app_name: chr0m1ng-twitter-bot
+        
