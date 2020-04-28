@@ -34,3 +34,4 @@ jobs:
           heroku_email: gabrielrsantoss@icloud.com
           # The appname to use for deploying/updating
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          branch: ${{ env.GITHUB_WORKSPACE }}
