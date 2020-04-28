@@ -32,6 +32,9 @@ jobs:
           mongo.connection_string: ${{ secrets.MONGO_CONNECTION_STRING }}
           mongo.database: ${{ secrets.MONGO_DATABASE }}
           bot.follow_triggers: ${{ secrets.BOT_FOLLOW_TRIGGERS }}
+        
+      - name: Cat settings
+        run: cat "src/configs/settings.example.json"
 
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.0.4
