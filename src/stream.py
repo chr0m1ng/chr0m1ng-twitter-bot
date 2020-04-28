@@ -9,3 +9,5 @@ while True:
 
         tf.setup_my_stream(tl)
         input('Running stream...')
+    except Exception as ex:
+        print(ex)
