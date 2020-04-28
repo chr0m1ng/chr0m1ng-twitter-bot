@@ -30,4 +30,4 @@ jobs:
         twitter.api_key_secret: ${{ secrets.TWITTER_API_KEY_SECRET }}
         mongo.connection_string: ${{ secrets.MONGO_CONNECTION_STRING }}
         mongo.database: ${{ secrets.MONGO_DATABASE }}
-        bot.follow_triggers: ${{ secrets.BOT_FOLLOW_TRIGGERS }}
+        # bot.follow_triggers: ${{ secrets.BOT_FOLLOW_TRIGGERS }}
