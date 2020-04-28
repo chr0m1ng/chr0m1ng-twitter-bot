@@ -5,7 +5,7 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,10 +22,6 @@ jobs:
           mongo.database: ${{ secrets.MONGO_DATABASE }}
           bot.follow_triggers: ${{ secrets.BOT_FOLLOW_TRIGGERS }}
 
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
       - name: Cat settings
         run: cat "src/configs/settings.example.json"
       
