@@ -35,7 +35,8 @@ jobs:
         
       - name: Cat settings
         run: cat "src/configs/settings.example.json"
-
+      
+      - uses: actions/checkout@v2
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.0.4
         with:
