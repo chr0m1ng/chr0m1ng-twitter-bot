@@ -36,7 +36,6 @@ jobs:
       - name: Cat settings
         run: cat "src/configs/settings.example.json"
       
-      - uses: actions/checkout@v2
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.0.4
         with:
@@ -46,3 +45,4 @@ jobs:
           heroku_email: gabrielrsantoss@icloud.com
           # The appname to use for deploying/updating
           heroku_app_name: chr0m1ng-twitter-bot
+          branch: master
