@@ -44,5 +44,4 @@ jobs:
           # Email that you use with heroku
           heroku_email: gabrielrsantoss@icloud.com
           # The appname to use for deploying/updating
-          heroku_app_name: chr0m1ng-twitter-bot
-          branch: master
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
