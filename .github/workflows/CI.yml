@@ -32,3 +32,11 @@ jobs:
         mongo.connection_string: ${{ secrets.MONGO_CONNECTION_STRING }}
         mongo.database: ${{ secrets.MONGO_DATABASE }}
         bot.follow_triggers: ${{ secrets.BOT_FOLLOW_TRIGGERS }}
+        
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: settings
+        # A file, directory or wildcard pattern that describes what to upload
+        path: 'src/configs/*.json'
