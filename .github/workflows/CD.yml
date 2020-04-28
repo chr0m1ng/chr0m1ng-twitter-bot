@@ -25,7 +25,7 @@ jobs:
       - name: Cat settings
         run: cat "src/configs/settings.example.json"
       
-      -name: Echo
+      - name: Echo
        run: echo ${{ env.GITHUB_WORKSPACE }}
       
       - name: Deploy to Heroku
