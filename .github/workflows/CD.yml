@@ -1,4 +1,4 @@
-name: Chr0m1ng Twitter Bot CI/CD
+name: Chr0m1ng Twitter Bot CD
 
 on:
   push:
