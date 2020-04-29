@@ -26,7 +26,7 @@ jobs:
         run: cat "src/configs/settings.example.json"
       
       - name: Git commit
-        run: git commit -am "Update settings"
+        run: git config --global user.email "gabrielrsantoss@icloud.com" && git config --global user.name "Gabriel Santos" && git commit -am "Update settings"
       
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.0.4
