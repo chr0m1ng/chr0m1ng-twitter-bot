@@ -1,28 +1,17 @@
-# This is a basic workflow to help you get started with Actions
+name: Chr0m1ng Twitter Bot CD
 
-name: Chr0m1ng Twitter Bot CI/CD
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [master]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  deploy:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Variable Substitution
         uses: microsoft/variable-substitution@v1
         with:
-          # comma separated list of XML/JSON/YAML files in which tokens are to be substituted. Files names must be specified relative to the folder-path.
           files: "src/configs/*.json"
         env:
           twitter.access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
@@ -33,6 +22,12 @@ jobs:
           mongo.database: ${{ secrets.MONGO_DATABASE }}
           bot.follow_triggers: ${{ secrets.BOT_FOLLOW_TRIGGERS }}
 
+      - name: Cat settings
+        run: cat "src/configs/settings.example.json"
+      
+      - name: Git commit
+        run: git config --global user.email "gabrielrsantoss@icloud.com" && git config --global user.name "Gabriel Santos" && git commit -am "Update settings"
+      
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.0.4
         with:
@@ -41,4 +36,4 @@ jobs:
           # Email that you use with heroku
           heroku_email: gabrielrsantoss@icloud.com
           # The appname to use for deploying/updating
-          heroku_app_name: chr0m1ng-twitter-bot
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
