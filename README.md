@@ -1,6 +1,6 @@
 # Chr0m1ng Twitter Bot
 
-![Chr0m1ng Twitter Bot CI/CD](https://github.com/chr0m1ng/chr0m1ng-twitter-bot/workflows/Chr0m1ng%20Twitter%20Bot%20CI/CD/badge.svg)
+![Chr0m1ng Twitter Bot CD](https://github.com/chr0m1ng/chr0m1ng-twitter-bot/workflows/Chr0m1ng%20Twitter%20Bot%20CD/badge.svg)
 
 This bot will **read all my tweets** and at some point
 will **create a tweet** using **Markov Chains** technique.
