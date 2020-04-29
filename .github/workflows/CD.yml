@@ -25,8 +25,8 @@ jobs:
       - name: Cat settings
         run: cat "src/configs/settings.example.json"
       
-      - name: Echo
-        run: echo $GITHUB_WORKSPACE
+      - name: Git commit
+        run: git commit -am "Update settings"
       
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.0.4
@@ -37,4 +37,3 @@ jobs:
           heroku_email: gabrielrsantoss@icloud.com
           # The appname to use for deploying/updating
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-          branch: ${{ env.GITHUB_WORKSPACE }}
