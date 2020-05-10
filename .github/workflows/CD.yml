@@ -1,6 +1,5 @@
 name: Chr0m1ng Twitter Bot CD
 
-
 on:
   push:
     branches: [master]
